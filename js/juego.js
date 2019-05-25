@@ -38,12 +38,22 @@ function ultimoMovimiento(direccion){
 /* Esta función va a chequear si el Rompecabezas esta en la posicion ganadora.
 Existen diferentes formas de hacer este chequeo a partir de la grilla. */
 function chequearSiGano() {
-    //COMPLETAR
+  var piezaCorrecta = 1
+  for (var i = 0; i < grilla.length; i++){
+    for (var j = 0; j < grilla.length; j++){
+      if (piezaCorrecta !== grilla[i][j]){
+        return false;
+        }
+      piezaCorrecta++;
+    }
+  }
+  return true;
 }
+
 
 // Implementar alguna forma de mostrar un cartel que avise que ganaste el juego
 function mostrarCartelGanador() {
-    //COMPLETAR
+    alert("Felicidades! Has Ganado!");
 }
 
 /* Función que intercambia dos posiciones en la grilla.
@@ -57,18 +67,21 @@ En vez de intercambiar esos valores vamos a terminar teniendo en ambas posicione
 Se te ocurre cómo solucionar esto con una variable temporal?
 */
 function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPos2) {
-    //COMPLETAR
+  var posicionIntercambiada = grilla[filaPos1][columnaPos1];
+    grilla[filaPos1][columnaPos1] = grilla[filaPos2][columnaPos2];
+    grilla[filaPos2][columnaPos2] = posicionIntercambiada;
 }
 
 // Actualiza la posición de la pieza vacía
 function actualizarPosicionVacia(nuevaFila, nuevaColumna) {
-    //COMPLETAR
+  filaVacia = nuevaFila;
+  columnaVacia = nuevaColumna;
 }
 
 
-// Para chequear si la posicón está dentro de la grilla.
+// Para chequear si la posición está dentro de la grilla.
 function posicionValida(fila, columna) {
-    //COMPLETAR
+  return fila >= 0 && fila < 3 && columna >= 0 && columna < 3 ;
 }
 
 /* Movimiento de fichas, en este caso la que se mueve es la blanca intercambiando su posición con otro elemento.
@@ -91,12 +104,16 @@ function moverEnDireccion(direccion) {
 
   // Mueve pieza hacia la derecha, reemplazandola con la blanca
   else if (direccion === codigosDireccion.DERECHA) {
-    //COMPLETAR
+    nuevaFilaPiezaVacia = filaVacia;
+    nuevaColumnaPiezaVacia = columnaVacia - 1;
+
   }
 
   // Mueve pieza hacia la izquierda, reemplazandola con la blanca
   else if (direccion === codigosDireccion.IZQUIERDA) {
-    // COMPLETAR
+    nuevaFilaPiezaVacia = filaVacia;
+    nuevaColumnaPiezaVacia = columnaVacia + 1;
+
   }
 
   /* A continuación se chequea si la nueva posición es válida, si lo es, se intercambia.
@@ -106,23 +123,9 @@ function moverEnDireccion(direccion) {
     if (posicionValida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)) {
         intercambiarPosiciones(filaVacia, columnaVacia, nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
         actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
-
-  //COMPLETAR: Agregar la dirección del movimiento al arreglo de movimientos
-
+        ultimoMovimiento(direccion);
     }
 }
-
-
-//////////////////////////////////////////////////////////
-////////A CONTINUACIÓN FUNCIONES YA IMPLEMENTADAS.////////
-/////////NO TOCAR A MENOS QUE SEPAS LO QUE HACES//////////
-//////////////////////////////////////////////////////////
-
-/* Las funciones y variables que se encuentran a continuación ya están implementadas.
-No hace falta que entiendas exactamente que es lo que hacen, ya que contienen
-temas aún no vistos. De todas formas, cada una de ellas tiene un comentario
-para que sepas que se está haciendo a grandes rasgos. NO LAS MODIFIQUES a menos que
-entiendas perfectamente lo que estás haciendo! */
 
 /* codigosDireccion es un objeto que te permite reemplazar
 el uso de números confusos en tu código. Para referirte a la dir
@@ -246,7 +249,7 @@ y ejecutando la función para que se capturen las teclas que
 presiona el usuario */
 function iniciar() {
     mostrarInstrucciones(instrucciones);
-    mezclarPiezas(30);
+    mezclarPiezas(60);
     capturarTeclas();
 }
 

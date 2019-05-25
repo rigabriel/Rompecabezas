@@ -19,6 +19,14 @@ li::before {
   color: #EC6778;
 }
 
+#titulo h1 {
+  font-style: Verdana;
+  background-color: #EC6778;
+  color: floralwhite;
+  text-align: center;
+  margin-top: -5px;
+}
+
 .col-40 h1 {
   font-size: 20px;
   color: #E84A5F;
@@ -59,8 +67,8 @@ li::before {
 }
 
 #objetivo img {
-  height: 70%;
-  width: 70%;
+  height: 60%;
+  width: 60%;
   margin-left: 50px;
 }
 
@@ -71,10 +79,21 @@ li::before {
   border: 1px solid green;
 }
 
+#pieza9 img {
+  visibility: hidden;
+}
+
+#footer{
+  height: 10%;
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+}
+
 #footer h1 {
   font-style: Verdana;
-  font-size: 20px;
-  color: #E84A5F;
+  font-size: 15px;
+  color: black;
 }
 
 @keyframes fadein {
